@@ -235,282 +235,282 @@ with tab_uebersetzung:
     st.dataframe(styled_combo_display)
 
 
-# # --- Tab: Suche nach Rotor-Drehmoment ---
-# with tab_rotor:
-#     st.subheader("Nach Rotor-Drehmoment filtern")
-#     # Eingabefelder für Ziel-Drehmoment und Toleranz
-#     target_torque_Rotor = st.number_input(
-#         "Ziel Rotor Drehmoment (Nm)",
-#         min_value=0.0,
-#         value=2.0,
-#         step=0.1,
-#         key="target_torque_Rotor",
-#         help="Wähle das Zieldrehmoment des Rotors aus."
-#     )
-#     tolerance_Rotor = st.number_input(
-#         "Toleranz (Nm)",
-#         min_value=0.0,
-#         value=1.0,
-#         step=0.1,
-#         key="tolerance_torque_Rotor",
-#         help="Die Toleranz definiert, wie weit weg man vom gewünschten Rotordrehmoment sein darf."
-#     )
-#     # Bereich für die Filterung berechnen
-#     min_torque_Rotor = target_torque_Rotor - tolerance_Rotor
-#     max_torque_Rotor = target_torque_Rotor + tolerance_Rotor
-#     st.markdown(f"**Gefiltert wird zwischen {min_torque_Rotor:.2f} Nm und {max_torque_Rotor:.2f} Nm**")
-#     # DataFrame nach Rotor-Drehmoment filtern
-#     torque_filtered = df_all[
-#         (df_all["Drehmoment Rotor"] >= min_torque_Rotor) &
-#         (df_all["Drehmoment Rotor"] <= max_torque_Rotor)
-#     ]
-#     # Relevante Spalten für die Anzeige auswählen
-#     torque__Rotor_filtered_display = torque_filtered[[
-#         "Polzahl Stator",
-#         "Polzahl Rotor",
-#         "Modulatorzahl",
-#         "Übersetzung",
-#         "Drehmoment Modulator",
-#         "Drehmoment Rotor"
-#     ]]
-#     # Formatierten DataFrame anzeigen
-#     styled_combo_display_TRot = farbige_und_zentrierte_formatierung(torque__Rotor_filtered_display.copy())
-#     st.subheader("Kombinationen im Drehmomentbereich")
-#     st.dataframe(styled_combo_display_TRot)
+# --- Tab: Suche nach Rotor-Drehmoment ---
+with tab_rotor:
+    st.subheader("Nach Rotor-Drehmoment filtern")
+    # Eingabefelder für Ziel-Drehmoment und Toleranz
+    target_torque_Rotor = st.number_input(
+        "Ziel Rotor Drehmoment (Nm)",
+        min_value=0.0,
+        value=2.0,
+        step=0.1,
+        key="target_torque_Rotor",
+        help="Wähle das Zieldrehmoment des Rotors aus."
+    )
+    tolerance_Rotor = st.number_input(
+        "Toleranz (Nm)",
+        min_value=0.0,
+        value=1.0,
+        step=0.1,
+        key="tolerance_torque_Rotor",
+        help="Die Toleranz definiert, wie weit weg man vom gewünschten Rotordrehmoment sein darf."
+    )
+    # Bereich für die Filterung berechnen
+    min_torque_Rotor = target_torque_Rotor - tolerance_Rotor
+    max_torque_Rotor = target_torque_Rotor + tolerance_Rotor
+    st.markdown(f"**Gefiltert wird zwischen {min_torque_Rotor:.2f} Nm und {max_torque_Rotor:.2f} Nm**")
+    # DataFrame nach Rotor-Drehmoment filtern
+    torque_filtered = df_all[
+        (df_all["Drehmoment Rotor"] >= min_torque_Rotor) &
+        (df_all["Drehmoment Rotor"] <= max_torque_Rotor)
+    ]
+    # Relevante Spalten für die Anzeige auswählen
+    torque__Rotor_filtered_display = torque_filtered[[
+        "Polzahl Stator",
+        "Polzahl Rotor",
+        "Modulatorzahl",
+        "Übersetzung",
+        "Drehmoment Modulator",
+        "Drehmoment Rotor"
+    ]]
+    # Formatierten DataFrame anzeigen
+    styled_combo_display_TRot = farbige_und_zentrierte_formatierung(torque__Rotor_filtered_display.copy())
+    st.subheader("Kombinationen im Drehmomentbereich")
+    st.dataframe(styled_combo_display_TRot)
 
-# # --- Tab: Suche nach Modulator-Drehmoment ---
-# with tab_mod:
-#     st.subheader("Nach Modulator-Drehmoment filtern")
-#     # Eingabefelder für Ziel-Drehmoment und Toleranz
-#     target_torque_MOD = st.number_input(
-#         "Ziel Modulator Drehmoment (Nm)",
-#         min_value=0.0,
-#         value=2.0,
-#         step=0.1,
-#         key="target_torque_MOD",
-#         help="Wähle das Zieldrehmoment des Modulators aus."
-#     )
-#     tolerance_MOD = st.number_input(
-#         "Toleranz (Nm)",
-#         min_value=0.0,
-#         value=1.0,
-#         step=0.1,
-#         key="tolerance_torque_MOD",
-#         help="Die Toleranz definiert, wie weit weg man vom gewünschten Modulatordrehmoment sein darf."
-#     )
-#     # Bereich für die Filterung berechnen
-#     min_torque_MOD = target_torque_MOD - tolerance_MOD
-#     max_torque_MOD = target_torque_MOD + tolerance_MOD
-#     st.markdown(f"**Gefiltert wird zwischen {min_torque_MOD:.2f} Nm und {max_torque_MOD:.2f} Nm**")
-#     # DataFrame nach Modulator-Drehmoment filtern
-#     torque_filtered_MOD = df_all[
-#         (df_all["Drehmoment Modulator"] >= min_torque_MOD) &
-#         (df_all["Drehmoment Modulator"] <= max_torque_MOD)
-#     ]
-#     # Relevante Spalten für die Anzeige auswählen
-#     torque_MOD_filtered_display = torque_filtered_MOD[[
-#         "Polzahl Stator",
-#         "Polzahl Rotor",
-#         "Modulatorzahl",
-#         "Übersetzung",
-#         "Drehmoment Modulator",
-#         "Drehmoment Rotor"
-#     ]]
-#     # Formatierten DataFrame anzeigen
-#     styled_combo_display_TMOD = farbige_und_zentrierte_formatierung(torque_MOD_filtered_display.copy())
-#     st.subheader("Kombinationen im Drehmomentbereich")
-#     st.dataframe(styled_combo_display_TMOD)
+# --- Tab: Suche nach Modulator-Drehmoment ---
+with tab_mod:
+    st.subheader("Nach Modulator-Drehmoment filtern")
+    # Eingabefelder für Ziel-Drehmoment und Toleranz
+    target_torque_MOD = st.number_input(
+        "Ziel Modulator Drehmoment (Nm)",
+        min_value=0.0,
+        value=2.0,
+        step=0.1,
+        key="target_torque_MOD",
+        help="Wähle das Zieldrehmoment des Modulators aus."
+    )
+    tolerance_MOD = st.number_input(
+        "Toleranz (Nm)",
+        min_value=0.0,
+        value=1.0,
+        step=0.1,
+        key="tolerance_torque_MOD",
+        help="Die Toleranz definiert, wie weit weg man vom gewünschten Modulatordrehmoment sein darf."
+    )
+    # Bereich für die Filterung berechnen
+    min_torque_MOD = target_torque_MOD - tolerance_MOD
+    max_torque_MOD = target_torque_MOD + tolerance_MOD
+    st.markdown(f"**Gefiltert wird zwischen {min_torque_MOD:.2f} Nm und {max_torque_MOD:.2f} Nm**")
+    # DataFrame nach Modulator-Drehmoment filtern
+    torque_filtered_MOD = df_all[
+        (df_all["Drehmoment Modulator"] >= min_torque_MOD) &
+        (df_all["Drehmoment Modulator"] <= max_torque_MOD)
+    ]
+    # Relevante Spalten für die Anzeige auswählen
+    torque_MOD_filtered_display = torque_filtered_MOD[[
+        "Polzahl Stator",
+        "Polzahl Rotor",
+        "Modulatorzahl",
+        "Übersetzung",
+        "Drehmoment Modulator",
+        "Drehmoment Rotor"
+    ]]
+    # Formatierten DataFrame anzeigen
+    styled_combo_display_TMOD = farbige_und_zentrierte_formatierung(torque_MOD_filtered_display.copy())
+    st.subheader("Kombinationen im Drehmomentbereich")
+    st.dataframe(styled_combo_display_TMOD)
 
-# # --- Tab: Kombi-Suche Übersetzung und Rotor-Drehmoment ---
-# with tab_combo1:
-#     st.subheader("Kombi-Suche: Übersetzung UND Rotor-Drehmoment")
-#     # Auswahl der Übersetzung und Toleranz
-#     combo_ratio_TRot = st.selectbox(
-#         "Übersetzung auswählen",
-#         sorted(df_all["Übersetzung"].unique()),
-#         key="combo_ratio_TRotor_i",
-#         help="Wähle die gewünschte Übersetzung aus."
-#     )
-#     combo_tolerance_i = st.number_input(
-#         "Toleranz (-)",
-#         min_value=0.0,
-#         value=1.0,
-#         step=0.1,
-#         key="combo_ratio_TRotor_i_tol",
-#         help="Toleranz für die Übersetzung."
-#     )
-#     min_t_i_TRotor = combo_ratio_TRot - combo_tolerance_i
-#     max_t_i_TRotor = combo_ratio_TRot + combo_tolerance_i
-#     # Auswahl des Ziel-Drehmoments und Toleranz für den Rotor
-#     combo_target_torque = st.number_input(
-#         "Ziel Rotor Drehmoment (Nm)",
-#         min_value=0.0,
-#         value=2.0,
-#         step=0.1,
-#         key="combo_ratio_TRotor_TRotor",
-#         help="Wähle das gewünschte Rotor-Drehmoment aus."
-#     )
-#     combo_tolerance_T = st.number_input(
-#         "Toleranz (Nm)",
-#         min_value=0.0,
-#         value=2.0,
-#         step=0.1,
-#         key="combo_ratio_TRotor_tol",
-#         help="Toleranz für das Rotor-Drehmoment."
-#     )
-#     min_t_T = combo_target_torque - combo_tolerance_T
-#     max_t_T = combo_target_torque + combo_tolerance_T
-#     st.markdown(
-#         f"Gefiltert wird nach Übersetzung **{combo_ratio_TRot}** "
-#         f"UND Rotor-Drehmoment **zwischen {min_t_T:.2f} Nm und {max_t_T:.2f} Nm**."
-#     )
-#     # DataFrame nach Übersetzung und Rotor-Drehmoment filtern
-#     combo_filtered = df_all[
-#         (df_all["Übersetzung"] >= min_t_i_TRotor) &
-#         (df_all["Übersetzung"] <= max_t_i_TRotor) &
-#         (df_all["Drehmoment Rotor"] >= min_t_T) &
-#         (df_all["Drehmoment Rotor"] <= max_t_T)
-#     ]
-#     # Relevante Spalten für die Anzeige auswählen
-#     combo_display_TRot_i = combo_filtered[[
-#         "Polzahl Stator",
-#         "Polzahl Rotor",
-#         "Modulatorzahl",
-#         "Übersetzung",
-#         "Drehmoment Modulator",
-#         "Drehmoment Rotor"
-#     ]]
-#     # Formatierten DataFrame anzeigen
-#     styled_combo_display_i_TRot = farbige_und_zentrierte_formatierung(combo_display_TRot_i.copy())
-#     st.subheader("Ergebnisse der Kombi-Suche")
-#     st.dataframe(styled_combo_display_i_TRot)
+# --- Tab: Kombi-Suche Übersetzung und Rotor-Drehmoment ---
+with tab_combo1:
+    st.subheader("Kombi-Suche: Übersetzung UND Rotor-Drehmoment")
+    # Auswahl der Übersetzung und Toleranz
+    combo_ratio_TRot = st.selectbox(
+        "Übersetzung auswählen",
+        sorted(df_all["Übersetzung"].unique()),
+        key="combo_ratio_TRotor_i",
+        help="Wähle die gewünschte Übersetzung aus."
+    )
+    combo_tolerance_i = st.number_input(
+        "Toleranz (-)",
+        min_value=0.0,
+        value=1.0,
+        step=0.1,
+        key="combo_ratio_TRotor_i_tol",
+        help="Toleranz für die Übersetzung."
+    )
+    min_t_i_TRotor = combo_ratio_TRot - combo_tolerance_i
+    max_t_i_TRotor = combo_ratio_TRot + combo_tolerance_i
+    # Auswahl des Ziel-Drehmoments und Toleranz für den Rotor
+    combo_target_torque = st.number_input(
+        "Ziel Rotor Drehmoment (Nm)",
+        min_value=0.0,
+        value=2.0,
+        step=0.1,
+        key="combo_ratio_TRotor_TRotor",
+        help="Wähle das gewünschte Rotor-Drehmoment aus."
+    )
+    combo_tolerance_T = st.number_input(
+        "Toleranz (Nm)",
+        min_value=0.0,
+        value=2.0,
+        step=0.1,
+        key="combo_ratio_TRotor_tol",
+        help="Toleranz für das Rotor-Drehmoment."
+    )
+    min_t_T = combo_target_torque - combo_tolerance_T
+    max_t_T = combo_target_torque + combo_tolerance_T
+    st.markdown(
+        f"Gefiltert wird nach Übersetzung **{combo_ratio_TRot}** "
+        f"UND Rotor-Drehmoment **zwischen {min_t_T:.2f} Nm und {max_t_T:.2f} Nm**."
+    )
+    # DataFrame nach Übersetzung und Rotor-Drehmoment filtern
+    combo_filtered = df_all[
+        (df_all["Übersetzung"] >= min_t_i_TRotor) &
+        (df_all["Übersetzung"] <= max_t_i_TRotor) &
+        (df_all["Drehmoment Rotor"] >= min_t_T) &
+        (df_all["Drehmoment Rotor"] <= max_t_T)
+    ]
+    # Relevante Spalten für die Anzeige auswählen
+    combo_display_TRot_i = combo_filtered[[
+        "Polzahl Stator",
+        "Polzahl Rotor",
+        "Modulatorzahl",
+        "Übersetzung",
+        "Drehmoment Modulator",
+        "Drehmoment Rotor"
+    ]]
+    # Formatierten DataFrame anzeigen
+    styled_combo_display_i_TRot = farbige_und_zentrierte_formatierung(combo_display_TRot_i.copy())
+    st.subheader("Ergebnisse der Kombi-Suche")
+    st.dataframe(styled_combo_display_i_TRot)
 
-# # --- Tab: Kombi-Suche Übersetzung und Modulator-Drehmoment ---
-# with tab_combo2:
-#     st.subheader("Kombi-Suche: Übersetzung UND Modulator-Drehmoment")
-#     # Auswahl der Übersetzung und Toleranz
-#     combo_ratio_TMOD = st.selectbox(
-#         "Übersetzung auswählen",
-#         sorted(df_all["Übersetzung"].unique()),
-#         key="combo_ratio_TMOD_i",
-#         help="Wähle die gewünschte Übersetzung aus."
-#     )
-#     combo_tolerance_i = st.number_input(
-#         "Toleranz (-)",
-#         min_value=0.0,
-#         value=1.0,
-#         step=0.1,
-#         key="combo_ratio_TMOD_i_tol",
-#         help="Toleranz für die Übersetzung."
-#     )
-#     min_t_i_TMOD = combo_ratio_TMOD - combo_tolerance_i
-#     max_t_i_TMOD = combo_ratio_TMOD + combo_tolerance_i
-#     # Auswahl des Ziel-Drehmoments und Toleranz für den Modulator
-#     combo_target_torque = st.number_input(
-#         "Ziel Modulator Drehmoment (Nm)",
-#         min_value=0.0,
-#         value=2.0,
-#         step=0.1,
-#         key="combo_ratio_TMOD_TMOD",
-#         help="Wähle das gewünschte Modulator-Drehmoment aus."
-#     )
-#     combo_tolerance = st.number_input(
-#         "Toleranz (Nm)",
-#         min_value=0.0,
-#         value=1.0,
-#         step=0.1,
-#         key="combo_ratio_TMOD_tol",
-#         help="Toleranz für das Modulator-Drehmoment."
-#     )
-#     min_t_T = combo_target_torque - combo_tolerance
-#     max_t_T = combo_target_torque + combo_tolerance
-#     st.markdown(
-#         f"Gefiltert wird nach Übersetzung **{combo_ratio_TMOD}** "
-#         f"UND Modulator-Drehmoment **zwischen {min_t_T:.2f} Nm und {max_t_T:.2f} Nm**."
-#     )
-#     # DataFrame nach Übersetzung und Modulator-Drehmoment filtern
-#     combo_filtered = df_all[
-#         (df_all["Übersetzung"] >= min_t_i_TMOD) &
-#         (df_all["Übersetzung"] <= max_t_i_TMOD) &
-#         (df_all["Drehmoment Modulator"] >= min_t_T) &
-#         (df_all["Drehmoment Modulator"] <= max_t_T)
-#     ]
-#     # Relevante Spalten für die Anzeige auswählen
-#     combo_display_TMOD_i = combo_filtered[[
-#         "Polzahl Stator",
-#         "Polzahl Rotor",
-#         "Modulatorzahl",
-#         "Übersetzung",
-#         "Drehmoment Modulator",
-#         "Drehmoment Rotor"
-#     ]]
-#     # Formatierten DataFrame anzeigen
-#     styled_combo_display_i_TMOD = farbige_und_zentrierte_formatierung(combo_display_TMOD_i.copy())
-#     st.subheader("Ergebnisse der Kombi-Suche")
-#     st.dataframe(styled_combo_display_i_TMOD)
+# --- Tab: Kombi-Suche Übersetzung und Modulator-Drehmoment ---
+with tab_combo2:
+    st.subheader("Kombi-Suche: Übersetzung UND Modulator-Drehmoment")
+    # Auswahl der Übersetzung und Toleranz
+    combo_ratio_TMOD = st.selectbox(
+        "Übersetzung auswählen",
+        sorted(df_all["Übersetzung"].unique()),
+        key="combo_ratio_TMOD_i",
+        help="Wähle die gewünschte Übersetzung aus."
+    )
+    combo_tolerance_i = st.number_input(
+        "Toleranz (-)",
+        min_value=0.0,
+        value=1.0,
+        step=0.1,
+        key="combo_ratio_TMOD_i_tol",
+        help="Toleranz für die Übersetzung."
+    )
+    min_t_i_TMOD = combo_ratio_TMOD - combo_tolerance_i
+    max_t_i_TMOD = combo_ratio_TMOD + combo_tolerance_i
+    # Auswahl des Ziel-Drehmoments und Toleranz für den Modulator
+    combo_target_torque = st.number_input(
+        "Ziel Modulator Drehmoment (Nm)",
+        min_value=0.0,
+        value=2.0,
+        step=0.1,
+        key="combo_ratio_TMOD_TMOD",
+        help="Wähle das gewünschte Modulator-Drehmoment aus."
+    )
+    combo_tolerance = st.number_input(
+        "Toleranz (Nm)",
+        min_value=0.0,
+        value=1.0,
+        step=0.1,
+        key="combo_ratio_TMOD_tol",
+        help="Toleranz für das Modulator-Drehmoment."
+    )
+    min_t_T = combo_target_torque - combo_tolerance
+    max_t_T = combo_target_torque + combo_tolerance
+    st.markdown(
+        f"Gefiltert wird nach Übersetzung **{combo_ratio_TMOD}** "
+        f"UND Modulator-Drehmoment **zwischen {min_t_T:.2f} Nm und {max_t_T:.2f} Nm**."
+    )
+    # DataFrame nach Übersetzung und Modulator-Drehmoment filtern
+    combo_filtered = df_all[
+        (df_all["Übersetzung"] >= min_t_i_TMOD) &
+        (df_all["Übersetzung"] <= max_t_i_TMOD) &
+        (df_all["Drehmoment Modulator"] >= min_t_T) &
+        (df_all["Drehmoment Modulator"] <= max_t_T)
+    ]
+    # Relevante Spalten für die Anzeige auswählen
+    combo_display_TMOD_i = combo_filtered[[
+        "Polzahl Stator",
+        "Polzahl Rotor",
+        "Modulatorzahl",
+        "Übersetzung",
+        "Drehmoment Modulator",
+        "Drehmoment Rotor"
+    ]]
+    # Formatierten DataFrame anzeigen
+    styled_combo_display_i_TMOD = farbige_und_zentrierte_formatierung(combo_display_TMOD_i.copy())
+    st.subheader("Ergebnisse der Kombi-Suche")
+    st.dataframe(styled_combo_display_i_TMOD)
 
-# # --- Tab: Kombi-Suche Rotor- und Modulator-Drehmoment ---
-# with tab_combo3:
-#     st.subheader("Kombi-Suche: Rotor-Drehmoment + Modulator-Drehmoment")
-#     # Auswahl des Ziel-Drehmoments und Toleranz für den Modulator
-#     combo_target_torque_MOD = st.number_input(
-#         "Ziel Modulator Drehmoment (Nm)",
-#         min_value=0.0,
-#         value=2.0,
-#         step=0.1,
-#         key="combo_TRotor_TMOD",
-#         help="Wähle das gewünschte Modulator-Drehmoment aus."
-#     )
-#     combo_tolerance_MOD = st.number_input(
-#         "Toleranz (Nm)",
-#         min_value=0.0,
-#         value=1.0,
-#         step=0.1,
-#         key="combo_TRotor_TMOD_tol",
-#         help="Toleranz für das Modulator-Drehmoment."
-#     )
-#     min_t_MOD = combo_target_torque_MOD - combo_tolerance_MOD
-#     max_t_MOD = combo_target_torque_MOD + combo_tolerance_MOD
-#     # Auswahl des Ziel-Drehmoments und Toleranz für den Rotor
-#     combo_target_torque_Rotor = st.number_input(
-#         "Ziel Rotor Drehmoment (Nm)",
-#         min_value=0.0,
-#         value=2.0,
-#         step=0.1,
-#         key="combo_target_Rotor",
-#         help="Wähle das gewünschte Rotor-Drehmoment aus."
-#     )
-#     combo_tolerance_Rotor = st.number_input(
-#         "Toleranz (Nm)",
-#         min_value=0.0,
-#         value=1.0,
-#         step=0.1,
-#         key="combo_tol_Rotor",
-#         help="Toleranz für das Rotor-Drehmoment."
-#     )
-#     min_t_Rotor = combo_target_torque_Rotor - combo_tolerance_Rotor
-#     max_t_Rotor = combo_target_torque_Rotor + combo_tolerance_Rotor
-#     st.markdown(
-#         f"Gefiltert wird nach Modulator-Drehmoment **zwischen {min_t_MOD:.2f} Nm und {max_t_MOD:.2f} Nm** "
-#         f"UND Rotor-Drehmoment **zwischen {min_t_Rotor:.2f} Nm und {max_t_Rotor:.2f} Nm**."
-#     )
-#     # DataFrame nach Rotor- und Modulator-Drehmoment filtern
-#     combo_filtered = df_all[
-#         (df_all["Drehmoment Modulator"] >= min_t_MOD) &
-#         (df_all["Drehmoment Modulator"] <= max_t_MOD) &
-#         (df_all["Drehmoment Rotor"] >= min_t_Rotor) &
-#         (df_all["Drehmoment Rotor"] <= max_t_Rotor)
-#     ]
-#     # Relevante Spalten für die Anzeige auswählen
-#     combo_display_TRot_TMOD = combo_filtered[[
-#         "Polzahl Stator",
-#         "Polzahl Rotor",
-#         "Modulatorzahl",
-#         "Übersetzung",
-#         "Drehmoment Modulator",
-#         "Drehmoment Rotor"
-#     ]]
-#     # Formatierten DataFrame anzeigen
-#     styled_combo_display_Trot_TMOD = farbige_und_zentrierte_formatierung(combo_display_TRot_TMOD.copy())
-#     st.subheader("Ergebnisse der Kombi-Suche")
-#     st.dataframe(styled_combo_display_Trot_TMOD)
+# --- Tab: Kombi-Suche Rotor- und Modulator-Drehmoment ---
+with tab_combo3:
+    st.subheader("Kombi-Suche: Rotor-Drehmoment + Modulator-Drehmoment")
+    # Auswahl des Ziel-Drehmoments und Toleranz für den Modulator
+    combo_target_torque_MOD = st.number_input(
+        "Ziel Modulator Drehmoment (Nm)",
+        min_value=0.0,
+        value=2.0,
+        step=0.1,
+        key="combo_TRotor_TMOD",
+        help="Wähle das gewünschte Modulator-Drehmoment aus."
+    )
+    combo_tolerance_MOD = st.number_input(
+        "Toleranz (Nm)",
+        min_value=0.0,
+        value=1.0,
+        step=0.1,
+        key="combo_TRotor_TMOD_tol",
+        help="Toleranz für das Modulator-Drehmoment."
+    )
+    min_t_MOD = combo_target_torque_MOD - combo_tolerance_MOD
+    max_t_MOD = combo_target_torque_MOD + combo_tolerance_MOD
+    # Auswahl des Ziel-Drehmoments und Toleranz für den Rotor
+    combo_target_torque_Rotor = st.number_input(
+        "Ziel Rotor Drehmoment (Nm)",
+        min_value=0.0,
+        value=2.0,
+        step=0.1,
+        key="combo_target_Rotor",
+        help="Wähle das gewünschte Rotor-Drehmoment aus."
+    )
+    combo_tolerance_Rotor = st.number_input(
+        "Toleranz (Nm)",
+        min_value=0.0,
+        value=1.0,
+        step=0.1,
+        key="combo_tol_Rotor",
+        help="Toleranz für das Rotor-Drehmoment."
+    )
+    min_t_Rotor = combo_target_torque_Rotor - combo_tolerance_Rotor
+    max_t_Rotor = combo_target_torque_Rotor + combo_tolerance_Rotor
+    st.markdown(
+        f"Gefiltert wird nach Modulator-Drehmoment **zwischen {min_t_MOD:.2f} Nm und {max_t_MOD:.2f} Nm** "
+        f"UND Rotor-Drehmoment **zwischen {min_t_Rotor:.2f} Nm und {max_t_Rotor:.2f} Nm**."
+    )
+    # DataFrame nach Rotor- und Modulator-Drehmoment filtern
+    combo_filtered = df_all[
+        (df_all["Drehmoment Modulator"] >= min_t_MOD) &
+        (df_all["Drehmoment Modulator"] <= max_t_MOD) &
+        (df_all["Drehmoment Rotor"] >= min_t_Rotor) &
+        (df_all["Drehmoment Rotor"] <= max_t_Rotor)
+    ]
+    # Relevante Spalten für die Anzeige auswählen
+    combo_display_TRot_TMOD = combo_filtered[[
+        "Polzahl Stator",
+        "Polzahl Rotor",
+        "Modulatorzahl",
+        "Übersetzung",
+        "Drehmoment Modulator",
+        "Drehmoment Rotor"
+    ]]
+    # Formatierten DataFrame anzeigen
+    styled_combo_display_Trot_TMOD = farbige_und_zentrierte_formatierung(combo_display_TRot_TMOD.copy())
+    st.subheader("Ergebnisse der Kombi-Suche")
+    st.dataframe(styled_combo_display_Trot_TMOD)
